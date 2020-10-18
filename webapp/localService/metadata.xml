@@ -42,6 +42,22 @@
             <EntitySet Name="TestDataSet" EntityType="CUSTOM_DATA_SRV.TestDataType" sap:content-version="1" />
             <EntitySet Name="TechSet" EntityType="CUSTOM_DATA_SRV.TechType" sap:content-version="1" />
             
+            <FunctionImport Name="ApprovePosition" ReturnType="CUSTOM_DATA_SRV.TechType" 
+               EntitySet="TechSet" m:HttpMethod="GET">
+               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
+            </FunctionImport>
+
+            <FunctionImport Name="LockPosition" ReturnType="CUSTOM_DATA_SRV.TechType" 
+               EntitySet="TechSet" m:HttpMethod="GET">
+               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
+            </FunctionImport>
+
+            <FunctionImport Name="ReplacePosition" ReturnType="CUSTOM_DATA_SRV.TechType" 
+               EntitySet="TechSet" m:HttpMethod="GET">
+               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
+            </FunctionImport>
+            
+
             <AssociationSet Name="assoc_DataTech" Association="CUSTOM_DATA_SRV.assoc_DataTech" 
                sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                <End EntitySet="TestDataSet" Role="FromRole_DataTech"/>
