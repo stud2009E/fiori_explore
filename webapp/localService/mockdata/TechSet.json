@@ -1,0 +1,20 @@
+[
+	{
+		"Status": "00",
+		"HasApprove": true,
+		"HasChange": false,
+		"HasReplace": false
+	},
+	{
+		"Status": "01",
+		"HasApprove": false,
+		"HasChange": true,
+		"HasReplace": false
+	},
+	{
+		"Status": "02",
+		"HasApprove": false,
+		"HasChange": false,
+		"HasReplace": true
+	}
+]

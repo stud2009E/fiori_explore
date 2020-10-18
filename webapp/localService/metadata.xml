@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+   xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+   xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+   <edmx:DataServices m:DataServiceVersion="2.0">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="CUSTOM_DATA_SRV" xml:lang="ru" sap:schema-version="1">
+         <EntityType Name="TestDataType" sap:label="test types" sap:content-version="1">
+            <Key>
+               <PropertyRef Name="Guid" />
+            </Key>
+            <Property Name="Guid" Type="Edm.Guid" MaxLength="10" Nullable="false" sap:label="GUID" />
+            <Property Name="String" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="String"/>
+            <Property Name="Status" Type="Edm.String" MaxLength="2" Nullable="false" sap:label="Status"/>
+            <Property Name="Decimal" Type="Edm.Decimal" MaxLength="10" Nullable="false" sap:label="Decimal"/>
+            <Property Name="Boolean" Type="Edm.Boolean" MaxLength="10" Nullable="false" sap:label="Boolean"/>
+            <Property Name="Int16" Type="Edm.Int16" MaxLength="10" Nullable="false" sap:label="Int16"/>
+            <Property Name="Int32" Type="Edm.Int32" MaxLength="10" Nullable="false" sap:label="Int32"/>
+            <Property Name="Date" Type="Edm.DateTime" MaxLength="10" Nullable="false" sap:display-format="Date" sap:label="Date"/>
+            <Property Name="Time" Type="Edm.Time" MaxLength="10" Nullable="false" sap:label="Time"/>
+            <Property Name="Byte" Type="Edm.Byte" MaxLength="10" Nullable="false" sap:label="Byte"/>
+            <NavigationProperty Name="to_TechAttribute" 
+               Relationship="CUSTOM_DATA_SRV.assoc_DataTech" 
+               FromRole="FromRole_DataTech" 
+               ToRole="ToRole_DataTech"/>
+         </EntityType>
+         <EntityType Name="TechType" sap:label="technical props">
+            <Key>
+               <PropertyRef Name="Status"/>
+            </Key>
+            <Property Name="Status" Type="Edm.String" MaxLength="2" Nullable="false" sap:label="Status"/>
+            <Property Name="HasApprove" Type="Edm.Boolean" Nullable="false" sap:label="Has approve"/>
+            <Property Name="HasChange" Type="Edm.Boolean" Nullable="false" sap:label="Has change"/>
+            <Property Name="HasReplace" Type="Edm.Boolean" Nullable="false" sap:label="Has replace"/>
+         </EntityType>
+
+         <Association Name="assoc_DataTech" sap:content-version="1">
+            <End Type="CUSTOM_DATA_SRV.TestDataType" Multiplicity="1" Role="FromRole_DataTech"/>
+            <End Type="CUSTOM_DATA_SRV.TechType" Multiplicity="0..1" Role="ToRole_DataTech"/>
+         </Association>
+
+         <EntityContainer Name="CUSTOM_DATA_SRVEntities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+            <EntitySet Name="TestDataSet" EntityType="CUSTOM_DATA_SRV.TestDataType" sap:content-version="1" />
+            <EntitySet Name="TechSet" EntityType="CUSTOM_DATA_SRV.TechType" sap:content-version="1" />
+            
+            <AssociationSet Name="assoc_DataTech" Association="CUSTOM_DATA_SRV.assoc_DataTech" 
+               sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+               <End EntitySet="TestDataSet" Role="FromRole_DataTech"/>
+               <End EntitySet="TechSet" Role="ToRole_DataTech"/>
+            </AssociationSet>
+         </EntityContainer>
+      </Schema>
+   </edmx:DataServices>
+</edmx:Edmx>
