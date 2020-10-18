@@ -56,10 +56,18 @@
 							<PropertyValue Property="Label" String="{@i18n&gt;labelExampleFacet}"/>
 						</Record>
 						<Record Type="UI.ReferenceFacet">
-							<Annotation Term="UI.Hidden" Bool="true"/>
 							<PropertyValue Property="ID" String="TechData"/>
 							<PropertyValue Property="Label" String="{@i18n&gt;TechData}"/>
 							<PropertyValue Property="Target" AnnotationPath="to_TechAttribute/@UI.FieldGroup#Tech"/> 
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="Approve"/>
+							<PropertyValue Property="Action" String="Metadata.CUSTOM_DATA_SRVEntities/ApprovePosition"/>
+							<PropertyValue Property="Determining" Bool="true"/>
 						</Record>
 					</Collection>
 				</Annotation>
