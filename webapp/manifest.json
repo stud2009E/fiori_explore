@@ -67,6 +67,11 @@
 				}
 			]
 		},
+		"componentUsages":{
+			"documents":{
+				"name": "z.feat.exp.ext.reuse"
+			}
+		},
 		"dependencies": {
 			"minUI5Version": "1.60.1",
 			"libs": {
@@ -187,6 +192,22 @@
 						"component": {
 							"name": "sap.suite.ui.generic.template.ObjectPage",
 							"settings": {}
+						},
+						"embeddedComponents": {
+							"documents": {
+								"title": "{{documents}}",
+								"id": "documents",
+								"componentUsage": "documents",
+								"settings":{
+									"navProperty": "to_Files",
+									"documentId": "FileId",
+									"fileName": "FileName",
+									"attributes": [
+										{"prop": "UserName"},
+										{"prop": "FileSize"}
+									] 
+								}
+							}
 						}
 					}
 				}

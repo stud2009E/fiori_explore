@@ -1,6 +1,6 @@
 [
 	{
-		"Guid": "1f707e91-0fef-4c88-ade1-65e932921a25",
+		"RowId": "01",
 		"String": "Reprehenderit sint velit. Ipsum laboris.",
 		"Status": "00",
 		"Decimal": 721.1545343493204,
@@ -12,7 +12,7 @@
 		"Byte": 3
 	},
 	{
-		"Guid": "ecd40596-33eb-4192-b6f1-8a3ce393369a",
+		"RowId": "02",
 		"String": "Lorem aliquip id pariatur.",
 		"Status": "01",
 		"Decimal": 817.7416623181464,
@@ -24,7 +24,7 @@
 		"Byte": 1
 	},
 	{
-		"Guid": "99739da1-0057-420c-83c7-b16abaf6bd89",
+		"RowId": "03",
 		"String": "Mollit excepteur.",
 		"Status": "02",
 		"Decimal": 548.7391161872548,
@@ -36,7 +36,7 @@
 		"Byte": 3
 	},
 	{
-		"Guid": "421bf79f-945c-477a-a47e-57f3a7ace4b7",
+		"RowId": "04",
 		"String": "Laboris nulla sunt duis. Aliqua anim.",
 		"Status": "00",
 		"Decimal": 260.9068616319499,
@@ -48,7 +48,7 @@
 		"Byte": 7
 	},
 	{
-		"Guid": "6874dfde-fecd-4f72-b857-9b29df14463a",
+		"RowId": "05",
 		"String": "Labore qui id. Nostrud laborum officia.",
 		"Status": "01",
 		"Decimal": 378.8348593420006,
@@ -60,7 +60,7 @@
 		"Byte": 3
 	},
 	{
-		"Guid": "96c4d8ef-9491-471b-8b4f-8dab98ae64da",
+		"RowId": "06",
 		"String": "Ullamco est. Velit ullamco eiusmod ad.",
 		"Status": "02",
 		"Decimal": 437.9986286196822,
@@ -72,7 +72,7 @@
 		"Byte": 1
 	},
 	{
-		"Guid": "56d1ba1d-2135-4155-9b1a-263d01d3cc2f",
+		"RowId": "07",
 		"String": "Labore aliqua.",
 		"Status": "00",
 		"Decimal": 19.965244979051057,
@@ -84,7 +84,7 @@
 		"Byte": 3
 	},
 	{
-		"Guid": "f982162a-f1c0-4def-8a3f-f0d5842e56dd",
+		"RowId": "08",
 		"String": "Ex velit deserunt. Minim nulla sit et.",
 		"Status": "01",
 		"Decimal": 158.5608373442404,
@@ -96,7 +96,7 @@
 		"Byte": 7
 	},
 	{
-		"Guid": "279c03d2-0dc1-443c-b097-e9193440e7be",
+		"RowId": "09",
 		"String": "Eu dolor. Dolor laboris.",
 		"Status": "02",
 		"Decimal": 422.6660994858429,
@@ -108,7 +108,7 @@
 		"Byte": 1
 	},
 	{
-		"Guid": "9b21a764-5169-477f-87cb-9dbf84040b97",
+		"RowId": "10",
 		"String": "Amet velit deserunt.",
 		"Status": "02",
 		"Decimal": 989.3406761181164,

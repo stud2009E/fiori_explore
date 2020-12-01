@@ -1,0 +1,63 @@
+<core:View xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+	controllerName="z.feat.exp.ext.reuse.Attachment">
+	
+	<template:alias name="TU" value="z.feat.exp.ext.reuse.TemplateUtils">
+		<template:alias name="AH" value="sap.ui.model.odata.AnnotationHelper">
+			<template:with path="props>" var="props">
+				<template:with path="meta>" var="meta">
+					<UploadCollection 
+						id="attachments"
+						multiple="true"
+						modelContextChange="onModelContextChange"
+						beforeUploadStarts="onBeforeUploadStarts"
+						uploadComplete="onUploadComplete"
+						fileDeleted="onFileDeleted"
+						items="{ 
+							path: 'props>navProperty',
+							formatter: 'TU.simplePath'
+						}">
+						<UploadCollectionItem 
+							press="onDownloadLinkPress"
+							documentId="{
+								path: 'props>documentId',
+								formatter: 'TU.simplePath'
+							}"
+							fileName="{
+								path: 'props>fileName',
+								formatter: 'TU.simplePath'
+							}"
+							mimeType="{
+								path: 'props>mimeType',
+								formatter: 'TU.simplePath'
+							}"
+							visibleDelete="true"
+							visibleEdit="false">
+							
+							<attributes>
+								<template:if test="{= Array.isArray(${props>attributes}) }">
+									<template:repeat list="{props>attributes}" var="item">
+										<ObjectAttribute
+											title="{
+												path: 'item>prop',
+												formatter: 'TU.simplePathLabel'
+											}"
+											text="{
+												path: 'item>prop',
+												formatter: 'TU.simplePath'
+											}"/>
+
+									</template:repeat>
+								</template:if>
+							</attributes>
+
+						</UploadCollectionItem>
+					</UploadCollection>
+				</template:with>
+			</template:with>
+		</template:alias>
+	</template:alias>
+
+</core:View>
+

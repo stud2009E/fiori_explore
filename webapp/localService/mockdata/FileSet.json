@@ -1,0 +1,30 @@
+[
+	{
+		"RowId": "01",
+		"FileId": "001",
+		"FileName": "File 1",
+		"UserName": "Admin",
+		"FileSize": "100Kb"
+	},
+	{
+		"RowId": "01",
+		"FileId": "002",
+		"FileName": "File 2",
+		"UserName": "User",
+		"FileSize": "1M"
+	},
+	{
+		"RowId": "01",
+		"FileId": "003",
+		"FileName": "File 3",
+		"UserName": "Vendor",
+		"FileSize": "100Kb"
+	},
+	{
+		"RowId": "01",
+		"FileId": "004",
+		"FileName": "File 4",
+		"UserName": "Guest",
+		"FileSize": "100Kb"
+	}
+]

@@ -6,9 +6,9 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="CUSTOM_DATA_SRV" xml:lang="ru" sap:schema-version="1">
          <EntityType Name="TestDataType" sap:label="test types" sap:content-version="1">
             <Key>
-               <PropertyRef Name="Guid" />
+               <PropertyRef Name="RowId" />
             </Key>
-            <Property Name="Guid" Type="Edm.Guid" MaxLength="10" Nullable="false" sap:label="GUID" />
+            <Property Name="RowId" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="Key" />
             <Property Name="String" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="String"/>
             <Property Name="Status" Type="Edm.String" MaxLength="2" Nullable="false" sap:label="Status"/>
             <Property Name="Decimal" Type="Edm.Decimal" MaxLength="10" Nullable="false" sap:label="Decimal"/>
@@ -22,6 +22,10 @@
                Relationship="CUSTOM_DATA_SRV.assoc_DataTech" 
                FromRole="FromRole_DataTech" 
                ToRole="ToRole_DataTech"/>
+            <NavigationProperty Name="to_Files" 
+               Relationship="CUSTOM_DATA_SRV.assoc_Files" 
+               FromRole="FromRole_File" 
+               ToRole="ToRole_File"/>
          </EntityType>
          <EntityType Name="TechType" sap:label="technical props">
             <Key>
@@ -32,15 +36,39 @@
             <Property Name="HasChange" Type="Edm.Boolean" Nullable="false" sap:label="Has change"/>
             <Property Name="HasReplace" Type="Edm.Boolean" Nullable="false" sap:label="Has replace"/>
          </EntityType>
+         <EntityType Name="FileType" sap:label="files props">
+            <Key>
+               <PropertyRef Name="FileId"/>
+               <PropertyRef Name="RowId"/>
+            </Key>
+            <Property Name="RowId" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="Data Id"/>
+            <Property Name="FileId" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="File Id"/>
+            <Property Name="FileName" Type="Edm.String" MaxLength="30" Nullable="false" sap:label="File name"/>
+            <Property Name="UserName" Type="Edm.String" MaxLength="20" Nullable="false" sap:label="User name"/>
+            <Property Name="FileSize" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="File size"/>
+         </EntityType>
 
          <Association Name="assoc_DataTech" sap:content-version="1">
             <End Type="CUSTOM_DATA_SRV.TestDataType" Multiplicity="1" Role="FromRole_DataTech"/>
             <End Type="CUSTOM_DATA_SRV.TechType" Multiplicity="0..1" Role="ToRole_DataTech"/>
          </Association>
+         <Association Name="assoc_Files" sap:content-version="1">
+            <End Type="CUSTOM_DATA_SRV.TestDataType" Multiplicity="1" Role="FromRole_File"/>
+            <End Type="CUSTOM_DATA_SRV.FileType" Multiplicity="*" Role="ToRole_File"/>
+            <ReferentialConstraint>
+               <Principal Role="FromRole_File">
+                  <PropertyRef Name="RowId"/>
+               </Principal>
+               <Dependent Role="ToRole_File">
+                  <PropertyRef Name="RowId"/>
+               </Dependent>
+            </ReferentialConstraint>
+         </Association>
 
          <EntityContainer Name="CUSTOM_DATA_SRVEntities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
             <EntitySet Name="TestDataSet" EntityType="CUSTOM_DATA_SRV.TestDataType" sap:content-version="1" />
             <EntitySet Name="TechSet" EntityType="CUSTOM_DATA_SRV.TechType" sap:content-version="1" />
+            <EntitySet Name="FileSet" EntityType="CUSTOM_DATA_SRV.FileType" sap:content-version="1" />
             
             <FunctionImport Name="ApprovePosition" 
                ReturnType="CUSTOM_DATA_SRV.TestDataType" 
@@ -64,7 +92,13 @@
                <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
             </FunctionImport>
 
-            <AssociationSet Name="assoc_DataTech" Association="CUSTOM_DATA_SRV.assoc_DataTech" 
+            <AssociationSet Name="set_assoc_File" Association="CUSTOM_DATA_SRV.assoc_Files" 
+               sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+               <End EntitySet="TestDataSet" Role="FromRole_File"/>
+               <End EntitySet="FileSet" Role="ToRole_File"/>
+            </AssociationSet>
+
+            <AssociationSet Name="set_assoc_DataTech" Association="CUSTOM_DATA_SRV.assoc_DataTech" 
                sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                <End EntitySet="TestDataSet" Role="FromRole_DataTech"/>
                <End EntitySet="TechSet" Role="ToRole_DataTech"/>
