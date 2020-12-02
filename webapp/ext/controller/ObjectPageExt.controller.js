@@ -1,50 +1,53 @@
-(function () {
+jQuery.sap.require("sap/ui/generic/app/util/MessageUtil");
+var MessageUtil = sap.ui.require("sap/ui/generic/app/util/MessageUtil");
 
-	jQuery.sap.require("sap/ui/generic/app/util/MessageUtil");
-	var MessageUtil = sap.ui.require("sap/ui/generic/app/util/MessageUtil");
+sap.ui.controller("z.feat.exp.ext.controller.ObjectPageExt", {
+	onInit: function () {
+		
+		this.extensionAPI.attachPageDataLoaded(this.onPageDataLoaded, this);
 
-	sap.ui.controller("z.feat.exp.ext.controller.ObjectPageExt", {
-		onInit: function () {
-			
-		},
+	},
+
+	onPageDataLoaded: function(oCtxWrapping){
+		//here goes your code
+	},
+
+	getResourceBundle: function () {
+		return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+	},
 	
-		getResourceBundle: function () {
-			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
-		},
+	/**
+	 * get i18n text
+	 */ 
+	i18n: function(){
+		var oBundle = this.getResourceBundle();
+		return oBundle.getText.apply(oBundle, arguments);
+	},
+	
+	/**
+	 * handle backend transient messages
+	 */
+	handleMessage: function(){
+		var oView = this.getView();
+		var that = this;
 		
-		/**
-		 * get i18n text
-		 */ 
-		i18n: function(){
-			var oBundle = this.getResourceBundle();
-			return oBundle.getText.apply(oBundle, arguments);
-		},
-		
-		/**
-		 * handle backend transient messages
-		 */
-		handleMessage: function(){
-			var oView = this.getView();
-			var that = this;
+		function getMessageDialogForView(oThisView, sName, oFragmentController) {
+			var sViewId = oThisView.getId();
+			var	oFragment;
 			
-			function getMessageDialogForView(oThisView, sName, oFragmentController) {
-				var sViewId = oThisView.getId();
-				var	oFragment;
+			if(!that[sName]){
+				oFragment = sap.ui.xmlfragment(sViewId, sName, oFragmentController);
+				oThisView.addDependent(oFragment);
 				
-				if(!that[sName]){
-					oFragment = sap.ui.xmlfragment(sViewId, sName, oFragmentController);
-					oThisView.addDependent(oFragment);
-					
-					that[sName] = oFragment;
-				}else{
-					oFragment = that[sName];
-				}
-				
-				return oFragment;
+				that[sName] = oFragment;
+			}else{
+				oFragment = that[sName];
 			}
 			
-			MessageUtil.handleTransientMessages(getMessageDialogForView.bind(null, oView));
+			return oFragment;
 		}
+		
+		MessageUtil.handleTransientMessages(getMessageDialogForView.bind(null, oView));
+	}
 
-	});
-})();
+});

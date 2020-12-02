@@ -97,7 +97,11 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: null
                 },
-
+                visibility: {
+                    type: "string",
+                    group: "specific",
+                    defaultValue: true
+                },
                 attributes: {
                     type: "array",
                     group: "specific",
@@ -165,6 +169,18 @@ sap.ui.define([
                 });
         },
 
+        /**
+         * refresh component when context of object page is changed
+         * @param {sap.ui.model.odata.v2.ODataModel} oModel 
+         * @param {sap.ui.model.Context} oBindingContext 
+         * @param {object} oExtensionAPI 
+         */
+        stRefresh(oModel, oBindingContext, oExtensionAPI){
+            var sVisiblePath = this.getVisibility();
+            var bVisible = oModel.getProperty(sVisiblePath, oContext);
+
+            oExtensionAPI.setSectionHidden(bVisible);
+        },
 
         /**
          * Load files then component is visible
@@ -189,8 +205,18 @@ sap.ui.define([
                     });
                 });
             }
-        }
+        },
 
+        /**
+         * define visibility of component
+         * @param {sap.ui.model.Context} oContext object page context
+         */
+        _getVisibility: function(oContext){
+            var sVisiblePath = this.getVisibility();
+            var oModel = oContext.getModel();
+
+            return oModel.getProperty(sVisiblePath, oContext);
+        }
     });
 
 });
