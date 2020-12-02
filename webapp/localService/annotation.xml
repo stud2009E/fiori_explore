@@ -18,6 +18,19 @@
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
 			Namespace="annotation.CUSTOM_DATA_SRV">
 			<Annotations Target="Metadata.TestDataType">
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="SortOrder">
+							<Collection>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>HideFile</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
 				<Annotation Term="UI.LineItem">
 					<Collection>
 						<Record Type="UI.DataField">
@@ -89,10 +102,30 @@
 								<Record Type="UI.DataField">
 									<PropertyValue Property="Value" Path="HasReplace"/>
 								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="HideFile"/>
+								</Record>
 							</Collection>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+			</Annotations>
+
+			<Annotations Target="Metadata.CUSTOM_DATA_SRVEntities/ApprovePosition">
+				<Annotation Term="Common.SideEffects">
+					<Record Type="Common.SideEffectsType">
+						<PropertyValue Property="TargetEntities">
+							<Collection>
+								<NavigationPropertyPath>to_TechAttribute</NavigationPropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Common.IsActionCritical" Bool="true"/>
+			</Annotations>
+
+			<Annotations Target="Metadata.TestDataType/HideFile">
+				<Annotation Term="UI.Hidden" Bool="true"/>
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>

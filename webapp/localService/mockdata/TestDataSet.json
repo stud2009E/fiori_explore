@@ -9,7 +9,8 @@
 		"Int32": 983,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3
+		"Byte": 3,
+		"HideFile": false
 	},
 	{
 		"RowId": "02",
@@ -21,7 +22,8 @@
 		"Int32": 797,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1
+		"Byte": 1,
+		"HideFile": true
 	},
 	{
 		"RowId": "03",
@@ -33,7 +35,8 @@
 		"Int32": 809,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3
+		"Byte": 3,
+		"HideFile": true
 	},
 	{
 		"RowId": "04",
@@ -45,7 +48,8 @@
 		"Int32": 884,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 7
+		"Byte": 7,
+		"HideFile": true
 	},
 	{
 		"RowId": "05",
@@ -57,7 +61,8 @@
 		"Int32": 834,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3
+		"Byte": 3,
+		"HideFile": true
 	},
 	{
 		"RowId": "06",
@@ -69,7 +74,8 @@
 		"Int32": 118,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1
+		"Byte": 1,
+		"HideFile": true
 	},
 	{
 		"RowId": "07",
@@ -81,7 +87,8 @@
 		"Int32": 327,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3
+		"Byte": 3,
+		"HideFile": true
 	},
 	{
 		"RowId": "08",
@@ -93,7 +100,8 @@
 		"Int32": 749,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 7
+		"Byte": 7,
+		"HideFile": true
 	},
 	{
 		"RowId": "09",
@@ -105,7 +113,8 @@
 		"Int32": 573,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1
+		"Byte": 1,
+		"HideFile": true
 	},
 	{
 		"RowId": "10",
@@ -117,6 +126,7 @@
 		"Int32": 137,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1
+		"Byte": 1,
+		"HideFile": true
 	}
 ]

@@ -18,6 +18,7 @@
             <Property Name="Date" Type="Edm.DateTime" MaxLength="10" Nullable="false" sap:display-format="Date" sap:label="Date"/>
             <Property Name="Time" Type="Edm.Time" MaxLength="10" Nullable="false" sap:label="Time"/>
             <Property Name="Byte" Type="Edm.Byte" MaxLength="10" Nullable="false" sap:label="Byte"/>
+            <Property Name="HideFile" Type="Edm.Boolean" MaxLength="10" Nullable="false" sap:label="Boolean"/>
             <NavigationProperty Name="to_TechAttribute" 
                Relationship="CUSTOM_DATA_SRV.assoc_DataTech" 
                FromRole="FromRole_DataTech" 
@@ -35,6 +36,7 @@
             <Property Name="HasApprove" Type="Edm.Boolean" Nullable="false" sap:label="Has approve"/>
             <Property Name="HasChange" Type="Edm.Boolean" Nullable="false" sap:label="Has change"/>
             <Property Name="HasReplace" Type="Edm.Boolean" Nullable="false" sap:label="Has replace"/>
+            <Property Name="HideFile" Type="Edm.Boolean" Nullable="false" sap:label="Hide files"/>
          </EntityType>
          <EntityType Name="FileType" sap:label="files props">
             <Key>
@@ -48,9 +50,21 @@
             <Property Name="FileSize" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="File size"/>
          </EntityType>
 
+         <ComplexType Name="ResultType">
+            <Property Name="Value" Type="Edm.Boolean" Nullable="false" sap:label="Result" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+         </ComplexType>
+
          <Association Name="assoc_DataTech" sap:content-version="1">
             <End Type="CUSTOM_DATA_SRV.TestDataType" Multiplicity="1" Role="FromRole_DataTech"/>
             <End Type="CUSTOM_DATA_SRV.TechType" Multiplicity="0..1" Role="ToRole_DataTech"/>
+            <ReferentialConstraint>
+               <Principal Role="FromRole_DataTech">
+                  <PropertyRef Name="Status"/>
+               </Principal>
+               <Dependent Role="ToRole_DataTech">
+                  <PropertyRef Name="Status"/>
+               </Dependent>
+            </ReferentialConstraint>
          </Association>
          <Association Name="assoc_Files" sap:content-version="1">
             <End Type="CUSTOM_DATA_SRV.TestDataType" Multiplicity="1" Role="FromRole_File"/>
@@ -70,26 +84,12 @@
             <EntitySet Name="TechSet" EntityType="CUSTOM_DATA_SRV.TechType" sap:content-version="1" />
             <EntitySet Name="FileSet" EntityType="CUSTOM_DATA_SRV.FileType" sap:content-version="1" />
             
-            <FunctionImport Name="ApprovePosition" 
-               ReturnType="CUSTOM_DATA_SRV.TestDataType" 
-               EntitySet="TechSet" m:HttpMethod="GET"
+            <FunctionImport Name="ApprovePosition"
+               ReturnType="CUSTOM_DATA_SRV.ResultType"
+               m:HttpMethod="POST"
                sap:action-for="CUSTOM_DATA_SRV.TestDataType"
                sap:applicable-path="to_TechAttribute/HasApprove">
-               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
-            </FunctionImport>
-            <FunctionImport Name="LockPosition" 
-               ReturnType="CUSTOM_DATA_SRV.TestDataType" 
-               EntitySet="TechSet" m:HttpMethod="GET"
-               sap:action-for="CUSTOM_DATA_SRV.TestDataType"
-               sap:applicable-path="to_TechAttribute/HasChange">
-               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
-            </FunctionImport>
-            <FunctionImport Name="ReplacePosition" 
-               ReturnType="CUSTOM_DATA_SRV.TestDataType" 
-               EntitySet="TechSet" m:HttpMethod="GET"
-               sap:action-for="CUSTOM_DATA_SRV.TestDataType"
-               sap:applicable-path="to_TechAttribute/HasReplace">
-               <Parameter Name="Guid" Type="Edm.Guid" Mode="In" MaxLength="5"/>
+               <Parameter Name="RowId" Type="Edm.String" Mode="In" MaxLength="10"/>
             </FunctionImport>
 
             <AssociationSet Name="set_assoc_File" Association="CUSTOM_DATA_SRV.assoc_Files" 
