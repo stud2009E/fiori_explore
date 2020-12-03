@@ -202,7 +202,7 @@
 									"navProperty": "to_Files",
 									"documentId": "FileId",
 									"fileName": "FileName",
-									"visibility": "HideFile",
+									"hidden": "{HideFile}",
 									"attributes": [
 										{"prop": "UserName"},
 										{"prop": "FileSize"}

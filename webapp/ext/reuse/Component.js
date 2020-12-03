@@ -59,32 +59,17 @@ sap.ui.define([
                     group: "specific",  
                     defaultValue: "MimeType"
                 },
-                uploadEnabledPath: {
-                    type: "string",
-                    group: "specific",
-                    defaultValue: null
-                },
                 //if no uploadEnabledPath, then use value uploadEnabled
                 uploadEnabled: {
                     type: "boolean",
                     group: "specific",
                     defaultValue: false
                 },
-                visibleDeletePath: {
-                    type: "string",
-                    group: "specific",
-                    defaultValue: null
-                },
                 //if no visibleDeletePath, then use value visibleDelete
                 visibleDelete: {
                     type: "boolean",
                     group: "specific",
                     defaultValue: false
-                },
-                uploadButtonInvisiblePath: {
-                    type: "string",
-                    group: "specific",
-                    defaultValue: null
                 },
                 //if no uploadButtonInvisiblePath, then use value uploadButtonInvisible
                 uploadButtonInvisible: {
@@ -97,8 +82,8 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: null
                 },
-                visibility: {
-                    type: "string",
+                hidden: {
+                    type: "boolean",
                     group: "specific",
                     defaultValue: true
                 },
@@ -138,6 +123,9 @@ sap.ui.define([
 
             //remember to use in controller
             this.setProperty("extensionAPI", oExtensionAPI);
+            
+            //update visibility because of async events
+            this.setHidden(this.getHidden());
 
             oRootControl.setModel(oPropModel, "props");
             oRootControl.bindElement({
@@ -154,7 +142,6 @@ sap.ui.define([
                         preprocessors: {
                             xml: {
                                 bindingContexts: {
-                                    meta: oMetaModel.getMetaContext(oBindingContext.getPath()),
                                     props: oRootControl.getBindingContext("props")
                                 },
                                 models: {
@@ -176,14 +163,24 @@ sap.ui.define([
          * @param {object} oExtensionAPI 
          */
         stRefresh(oModel, oBindingContext, oExtensionAPI){
-            var sVisiblePath = this.getVisibility();
-            var bVisible = oModel.getProperty(sVisiblePath, oBindingContext);
 
-            oExtensionAPI.setSectionHidden(bVisible);
         },
 
         /**
-         * Load files then component is visible
+         * 
+         * @param {boolean} bHidden 
+         */
+        setHidden:function(bHidden){
+            var oExtensionAPI = this.getExtensionAPI();
+            if(typeof bHidden === "boolean" && oExtensionAPI){ 
+                oExtensionAPI.setSectionHidden(bHidden);
+            }
+
+            this.setProperty("hidden", bHidden);
+        },
+
+        /**
+         * Load files then component is visible (lazy load)
          * @param {boolean} bStIsAreaVisible 
          */
         setStIsAreaVisible: function(bStIsAreaVisible){
@@ -205,17 +202,6 @@ sap.ui.define([
                     });
                 });
             }
-        },
-
-        /**
-         * define visibility of component
-         * @param {sap.ui.model.Context} oContext object page context
-         */
-        _getVisibility: function(oContext){
-            var sVisiblePath = this.getVisibility();
-            var oModel = oContext.getModel();
-
-            return oModel.getProperty(sVisiblePath, oContext);
         }
     });
 
