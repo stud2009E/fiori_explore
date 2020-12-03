@@ -17,7 +17,7 @@
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
 			Namespace="annotation.CUSTOM_DATA_SRV">
-			<Annotations Target="Metadata.TestDataType">
+			<Annotations Target="Metadata.HeaderType">
 				<Annotation Term="UI.PresentationVariant">
 					<Record Type="UI.PresentationVariantType">
 						<PropertyValue Property="SortOrder">
@@ -34,7 +34,7 @@
 				<Annotation Term="UI.LineItem">
 					<Collection>
 						<Record Type="UI.DataField">
-							<PropertyValue Property="Value" Path="Guid"/>
+							<PropertyValue Property="Value" Path="RowId"/>
 						</Record>
 						<Record Type="UI.DataField">
 							<PropertyValue Property="Value" Path="Date"/>
@@ -65,15 +65,40 @@
 				<Annotation Term="UI.Facets">
 					<Collection>
 						<Record Type="UI.ReferenceFacet">
-							<PropertyValue Property="ID" String="Example_Facet"/>
-							<PropertyValue Property="Label" String="{@i18n&gt;labelExampleFacet}"/>
+							<PropertyValue Property="ID" String="customView"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;customView}"/>
 						</Record>
-						<Record Type="UI.ReferenceFacet">
-							<PropertyValue Property="ID" String="TechData"/>
-							<PropertyValue Property="Label" String="{@i18n&gt;TechData}"/>
-							<PropertyValue Property="Target" AnnotationPath="to_TechAttribute/@UI.FieldGroup#Tech"/> 
+						<Record Type="UI.CollectionFacet">
+							<PropertyValue Property="ID" String="technical"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;technical}"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="ID" String="header"/>
+										<PropertyValue Property="Label" String="{@i18n&gt;from HeaderType}"/>
+										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#techHeaderData"/>
+									</Record>
+									<Record Type="UI.ReferenceFacet">
+										<PropertyValue Property="ID" String="main"/>
+										<PropertyValue Property="Label" String="{@i18n&gt;from TechType}"/>
+										<PropertyValue Property="Target" AnnotationPath="to_TechAttribute/@UI.FieldGroup#techData"/> 
+									</Record>
+								</Collection>
+							</PropertyValue>
+							<Annotation Term="UI.Hidden" Path="to_Settings/HideDivDoc"/>
 						</Record>
 					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="techHeaderData">
+					 <Record Type="FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="HideFile"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
 				</Annotation>
 				<Annotation Term="UI.Identification">
 					<Collection>
@@ -86,7 +111,7 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="Metadata.TechType">
-				<Annotation Term="UI.FieldGroup" Qualifier="Tech">
+				<Annotation Term="UI.FieldGroup" Qualifier="techData">
 					 <Record Type="FieldGroupType">
 						<PropertyValue Property="Data">
 							<Collection>
@@ -101,9 +126,6 @@
 								</Record>
 								<Record Type="UI.DataField">
 									<PropertyValue Property="Value" Path="HasReplace"/>
-								</Record>
-								<Record Type="UI.DataField">
-									<PropertyValue Property="Value" Path="HideFile"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
@@ -122,10 +144,6 @@
 					</Record>
 				</Annotation>
 				<Annotation Term="Common.IsActionCritical" Bool="true"/>
-			</Annotations>
-
-			<Annotations Target="Metadata.TestDataType/HideFile">
-				<Annotation Term="UI.Hidden" Bool="true"/>
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>

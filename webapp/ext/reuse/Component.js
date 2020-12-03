@@ -177,7 +177,7 @@ sap.ui.define([
          */
         stRefresh(oModel, oBindingContext, oExtensionAPI){
             var sVisiblePath = this.getVisibility();
-            var bVisible = oModel.getProperty(sVisiblePath, oContext);
+            var bVisible = oModel.getProperty(sVisiblePath, oBindingContext);
 
             oExtensionAPI.setSectionHidden(bVisible);
         },
