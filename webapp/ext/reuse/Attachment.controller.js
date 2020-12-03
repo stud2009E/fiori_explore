@@ -13,19 +13,15 @@ sap.ui.define([
 	return Controller.extend("z.feat.exp.ext.reuse.controller.Attachment", {
 
 		onInit: function(){
-			var oView = this.getView();
-			oView.attachAfterInit(this.onAfterInit, this);
-		},
+			var oComponent = this.getOwnerComponent();
+			var oUploadCollection = this.byId("attachments");
+			var oBinding = oUploadCollection.getBinding("items");
 
-		/**
-		 * handle after init event
-		 * @param {sap.ui.base.Event} oEvent 
-		 */
-		onAfterInit: function(oEvent){
-			this._component = oEvent.getParameter("component");
+			if(oBinding){
+				oBinding.attachDataReceived(this.updateUploadCollectionItems, this);
+			}
 
-			this.updateUploadUri();
-			this.setupUploader();
+			oComponent.attachChange(this.updateUploader, this);
 		},
 
 		/**
@@ -34,7 +30,10 @@ sap.ui.define([
 		 * @returns {sap.ui.core.Component} component
 		 */
 		getOwnerComponent: function(){
-			return this._component;
+			var oView = this.getView();
+			var oViewData = oView.getViewData();
+
+			return oViewData.component;
 		},
 
 
@@ -73,46 +72,50 @@ sap.ui.define([
 						success: resolve,
 						error: reject
 					});
-				}).then(function(){
-					oSource.getBinding("items").refresh();
-				}).finally(function(){
-					MessageUtil.handleTransientMessages(null, "");
 				});
-			});
+			}).then(function(){
+				oSource.getBinding("items").refresh();
+			}).finally(function(){
+				MessageUtil.handleTransientMessages(null, "");
+			});;
 		},
-		
+
 		/**
-		 * Setup uploader uploadEnabled and uploadButtonInvisible
+		 * handle context change event
+		 * @param {sap.ui.base.Event} oEvent 
 		 */
-		setupUploader: function(){
-			var oUpload = this.byId("attachments");
+		onModelContextChange: function(oEvent){
+			this.updateUploader();
+		},
+
+		/**
+		 * update upload collection
+		 */
+		updateUploader: function(){
 			var oComponent = this.getOwnerComponent();
-
-			var sInvisiblePath = oComponent.getUploadButtonInvisiblePath();
-			var bInvisible = oComponent.getUploadButtonInvisible();
-			if(sInvisiblePath){
-				oUpload.bindProperty("uploadButtonInvisible", {
-					path: sInvisiblePath,
-					formatter: function(bInvisible){
-						return !!bInvisible;
-					}
-				});
-			}else{
-				oUpload.setUploadButtonInvisible(bInvisible);
-			}
-
-			var sEnablePath = oComponent.getUploadEnabledPath();
+			var oUploadCollection = this.byId("attachments");
+			
 			var bEnabled = oComponent.getUploadEnabled();
-			if(sEnablePath){
-				oUpload.bindProperty("uploadEnabled", {
-					path: sEnablePath,
-					formatter: function(bEnabled){
-						return !!bEnabled;
-					}
-				});
-			}else{
-				oUpload.setUploadEnabled(bEnabled);
-			}
+			var bInvisible = oComponent.getUploadButtonInvisible();
+			
+			oUploadCollection.setUploadEnabled(bEnabled);
+			oUploadCollection.setUploadButtonInvisible(bInvisible);
+
+			this.updateUploadCollectionItems();
+			this.updateUploadUri();
+		},
+
+		/**
+		 * update upload collection items 
+		 */
+		updateUploadCollectionItems: function(){
+			var oComponent = this.getOwnerComponent();
+			var oUploadCollection = this.byId("attachments");
+			var bDeleteVisible = oComponent.getVisibleDelete();
+
+			$.each(oUploadCollection.getItems(), function(i, oItem){
+				oItem.setVisibleDelete(bDeleteVisible);
+			});
 		},
 
 		/**
@@ -126,20 +129,10 @@ sap.ui.define([
 			if(!oBindingContext){
 				return;
 			}
-			var oModel = oBindingContext.getModel();
-			var sServiceUri = oModel.sServiceUrl;
 			var sTargetUri = oComponent.getNavProperty();
-			var sTargetUploadNavigationPath = oBindingContext.getPath(sTargetUri);
+			var sNavigationPath = oBindingContext.getPath(sTargetUri);
 			
-			oUploadCollection.setUploadUrl(sServiceUri + sTargetUploadNavigationPath);
-		},
-
-		/**
-		 * handle context change event
-		 * @param {sap.ui.base.Event} oEvent 
-		 */
-		onModelContextChange: function(oEvent){
-			
+			oUploadCollection.setUploadUrl(sNavigationPath);
 		},
 
 		/**
@@ -182,11 +175,8 @@ sap.ui.define([
 
 			if(!oUploadCollectionItem.getUrl()){
 				var oBindingContext = oUploadCollectionItem.getBindingContext();
-				var oModel = oBindingContext.getModel();
-				var sServiceUrl = oModel.sServiceUrl;
 				var sContextUrl = oBindingContext.getPath("$value");
-				var sItemUrl = sServiceUrl + sContextUrl;
-				oUploadCollectionItem.setUrl(sItemUrl);
+				oUploadCollectionItem.setUrl(sContextUrl);
 			}
 
 			oUploadCollectionItem.download(true);

@@ -203,6 +203,9 @@
 									"documentId": "FileId",
 									"fileName": "FileName",
 									"hidden": "{HideFile}",
+									"uploadEnabled": false,
+									"visibleDelete": false,
+									"uploadButtonInvisible": true,
 									"attributes": [
 										{"prop": "UserName"},
 										{"prop": "FileSize"}

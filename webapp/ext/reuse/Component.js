@@ -54,8 +54,9 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: "FileName"
                 },
+                //string[]:Example mimeType ["image/png", "image/jpeg"]
                 mimeType: {
-                    type: "string",
+                    type: "array",
                     group: "specific",  
                     defaultValue: "MimeType"
                 },
@@ -65,13 +66,11 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: false
                 },
-                //if no visibleDeletePath, then use value visibleDelete
                 visibleDelete: {
                     type: "boolean",
                     group: "specific",
                     defaultValue: false
                 },
-                //if no uploadButtonInvisiblePath, then use value uploadButtonInvisible
                 uploadButtonInvisible: {
                     type: "boolean",
                     group: "specific",
@@ -87,11 +86,16 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: true
                 },
+                //Example: [{path: "prop1"}, {path: "prop2"}] 
                 attributes: {
                     type: "array",
                     group: "specific",
                     defaultValue: null
                 }
+            },
+
+            events: {
+                change: {}
             }
         },
 
@@ -138,6 +142,9 @@ sap.ui.define([
                     return View.create({
                         async: true,
                         viewName: oComponent.getViewName(),
+                        viewData: {
+                            component: oComponent
+                        },
                         type: ViewType.XML,
                         preprocessors: {
                             xml: {
@@ -151,7 +158,8 @@ sap.ui.define([
                             }
                         }
                     });
-                }).catch(function(){
+                }).catch(function(oError){
+                    console.log(oError);
                     //TODO log error message
                 });
         },
@@ -163,20 +171,66 @@ sap.ui.define([
          * @param {object} oExtensionAPI 
          */
         stRefresh(oModel, oBindingContext, oExtensionAPI){
+            //
+        },
 
+        /**
+         * hide upload button
+         * @param {boolean} bHidden 
+         * @param {boolean} bSuppressInvalidate 
+         */
+        setUploadButtonInvisible: function(bHidden, bSuppressInvalidate){
+            var bOldValue = this.getProperty("uploadButtonInvisible");
+            this.setProperty("uploadButtonInvisible", bHidden, bSuppressInvalidate);
+
+            this._fireChangeEvent(bHidden, bOldValue, "uploadButtonInvisible"); 
+        },
+
+        /**
+         * set visibility of delete
+         * @param {boolean} bVisible 
+         * @param {boolean} bSuppressInvalidate 
+         */
+        setVisibleDelete: function(bVisible, bSuppressInvalidate){
+            var bOldValue = this.getProperty("visibleDelete");
+            this.setProperty("visibleDelete", bVisible, bSuppressInvalidate);
+
+            this._fireChangeEvent(bVisible, bOldValue, "visibleDelete"); 
+        },
+
+        /**
+         * enable file upload
+         * @param {boolean} bEnabled 
+         * @param {boolean} bSuppressInvalidate 
+         */
+        setUploadEnabled: function(bEnabled, bSuppressInvalidate){
+            var bOldValue = this.getProperty("uploadEnabled");
+            
+            this.setProperty("uploadEnabled", bEnabled, bSuppressInvalidate);
+            this._fireChangeEvent(bEnabled, bOldValue, "uploadEnabled"); 
+        },
+
+
+        _fireChangeEvent: function(bNewValue, bOldValue, sProperty){
+            if(typeof bNewValue === "boolean" && bOldValue !== bNewValue){    
+                this.fireEvent("change", {
+                    property: sProperty,
+                    value: bNewValue
+                });
+            }
         },
 
         /**
          * 
          * @param {boolean} bHidden 
          */
-        setHidden:function(bHidden){
+        setHidden:function(bHidden, bSuppressInvalidate){
             var oExtensionAPI = this.getExtensionAPI();
             if(typeof bHidden === "boolean" && oExtensionAPI){ 
                 oExtensionAPI.setSectionHidden(bHidden);
             }
 
-            this.setProperty("hidden", bHidden);
+            this.setProperty("hidden", bHidden, bSuppressInvalidate);
         },
 
         /**
@@ -184,7 +238,6 @@ sap.ui.define([
          * @param {boolean} bStIsAreaVisible 
          */
         setStIsAreaVisible: function(bStIsAreaVisible){
-            var oComponent = this;
             var oRootControl = this.getRootControl();
             var iLength = oRootControl && oRootControl.getItems().length;
 
@@ -195,11 +248,6 @@ sap.ui.define([
             if(bStIsAreaVisible === true && iLength === 0){
                 this._contentPromise && this._contentPromise.then(function(oView){
                     oRootControl.addItem(oView);
-
-                    //temporary solution to the problem for runAsOwner
-                    oView.fireEvent("afterInit", {
-                        component: oComponent
-                    });
                 });
             }
         }
