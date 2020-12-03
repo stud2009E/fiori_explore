@@ -26,5 +26,26 @@
 		"FileName": "File 4",
 		"UserName": "Guest",
 		"FileSize": "100Kb"
+	},
+	{
+		"RowId": "02",
+		"FileId": "005",
+		"FileName": "File SuperUser",
+		"UserName": "SuperUser",
+		"FileSize": "1M"
+	},
+	{
+		"RowId": "02",
+		"FileId": "006",
+		"FileName": "File Vendor",
+		"UserName": "Vendor",
+		"FileSize": "100Kb"
+	},
+	{
+		"RowId": "02",
+		"FileId": "007",
+		"FileName": "File Basis",
+		"UserName": "Basis",
+		"FileSize": "100Kb"
 	}
 ]

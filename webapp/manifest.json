@@ -202,10 +202,10 @@
 									"navProperty": "to_Files",
 									"documentId": "FileId",
 									"fileName": "FileName",
-									"hidden": "{HideFile}",
-									"uploadEnabled": false,
-									"visibleDelete": false,
-									"uploadButtonInvisible": true,
+									"hidden": "{to_TechAttribute/HideFile}",
+									"uploadEnabled": true,
+									"visibleDelete": "{to_TechAttribute/FileDeleteVisible}",
+									"uploadButtonInvisible": "{to_TechAttribute/UploadHidden}",
 									"attributes": [
 										{"prop": "UserName"},
 										{"prop": "FileSize"}

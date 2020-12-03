@@ -26,7 +26,6 @@
 						</PropertyValue>
 						<PropertyValue Property="RequestAtLeast">
 							<Collection>
-								<PropertyPath>HideFile</PropertyPath>
 							</Collection>
 						</PropertyValue>
 					</Record>
@@ -74,11 +73,6 @@
 							<PropertyValue Property="Facets">
 								<Collection>
 									<Record Type="UI.ReferenceFacet">
-										<PropertyValue Property="ID" String="header"/>
-										<PropertyValue Property="Label" String="{@i18n&gt;from HeaderType}"/>
-										<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#techHeaderData"/>
-									</Record>
-									<Record Type="UI.ReferenceFacet">
 										<PropertyValue Property="ID" String="main"/>
 										<PropertyValue Property="Label" String="{@i18n&gt;from TechType}"/>
 										<PropertyValue Property="Target" AnnotationPath="to_TechAttribute/@UI.FieldGroup#techData"/> 
@@ -88,17 +82,6 @@
 							<Annotation Term="UI.Hidden" Path="to_Settings/HideDivDoc"/>
 						</Record>
 					</Collection>
-				</Annotation>
-				<Annotation Term="UI.FieldGroup" Qualifier="techHeaderData">
-					 <Record Type="FieldGroupType">
-						<PropertyValue Property="Data">
-							<Collection>
-								<Record Type="UI.DataField">
-									<PropertyValue Property="Value" Path="HideFile"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
 				</Annotation>
 				<Annotation Term="UI.Identification">
 					<Collection>
@@ -126,6 +109,15 @@
 								</Record>
 								<Record Type="UI.DataField">
 									<PropertyValue Property="Value" Path="HasReplace"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="HideFile"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="UploadHidden"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="FileDeleteVisible"/>
 								</Record>
 							</Collection>
 						</PropertyValue>

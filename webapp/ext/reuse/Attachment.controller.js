@@ -20,6 +20,10 @@ sap.ui.define([
 			if(oBinding){
 				oBinding.attachDataReceived(this.updateUploadCollectionItems, this);
 			}
+			
+			oUploadCollection.addEventDelegate({
+				onAfterRendering: this.updateUploadCollectionItems.bind(this)
+			});
 
 			oComponent.attachChange(this.updateUploader, this);
 		},

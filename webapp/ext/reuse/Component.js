@@ -211,6 +211,12 @@ sap.ui.define([
         },
 
 
+        /**
+         * fire event if new value is not equal to old
+         * @param {boolean} bNewValue new value
+         * @param {boolean} bOldValue old value
+         * @param {string} sProperty property name
+         */
         _fireChangeEvent: function(bNewValue, bOldValue, sProperty){
             if(typeof bNewValue === "boolean" && bOldValue !== bNewValue){    
                 this.fireEvent("change", {

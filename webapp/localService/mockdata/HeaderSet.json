@@ -9,8 +9,7 @@
 		"Int32": 983,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3,
-		"HideFile": false
+		"Byte": 3
 	},
 	{
 		"RowId": "02",
@@ -22,8 +21,7 @@
 		"Int32": 797,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1,
-		"HideFile": true
+		"Byte": 1
 	},
 	{
 		"RowId": "03",
@@ -35,21 +33,19 @@
 		"Int32": 809,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3,
-		"HideFile": true
+		"Byte": 3
 	},
 	{
 		"RowId": "04",
 		"String": "Laboris nulla sunt duis. Aliqua anim.",
-		"Status": "00",
+		"Status": "01",
 		"Decimal": 260.9068616319499,
 		"Boolean": false,
 		"Int16": 551,
 		"Int32": 884,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 7,
-		"HideFile": true
+		"Byte": 7
 	},
 	{
 		"RowId": "05",
@@ -61,8 +57,7 @@
 		"Int32": 834,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3,
-		"HideFile": true
+		"Byte": 3
 	},
 	{
 		"RowId": "06",
@@ -74,21 +69,19 @@
 		"Int32": 118,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1,
-		"HideFile": true
+		"Byte": 1
 	},
 	{
 		"RowId": "07",
 		"String": "Labore aliqua.",
-		"Status": "00",
+		"Status": "01",
 		"Decimal": 19.965244979051057,
 		"Boolean": false,
 		"Int16": 30,
 		"Int32": 327,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 3,
-		"HideFile": true
+		"Byte": 3
 	},
 	{
 		"RowId": "08",
@@ -100,8 +93,7 @@
 		"Int32": 749,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 7,
-		"HideFile": true
+		"Byte": 7
 	},
 	{
 		"RowId": "09",
@@ -113,8 +105,7 @@
 		"Int32": 573,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1,
-		"HideFile": true
+		"Byte": 1
 	},
 	{
 		"RowId": "10",
@@ -126,7 +117,6 @@
 		"Int32": 137,
 		"Date": "/Date(1598838725000)/",
 		"Time": "PT23H59M59S",
-		"Byte": 1,
-		"HideFile": true
+		"Byte": 1
 	}
 ]

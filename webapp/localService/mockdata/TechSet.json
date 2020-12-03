@@ -3,18 +3,27 @@
 		"Status": "00",
 		"HasApprove": true,
 		"HasChange": false,
-		"HasReplace": false
+		"HasReplace": false,
+		"HideFile": false,
+		"UploadHidden": false,
+		"FileDeleteVisible": true
 	},
 	{
 		"Status": "01",
 		"HasApprove": false,
 		"HasChange": true,
-		"HasReplace": false
+		"HasReplace": false,
+		"HideFile": false,
+		"UploadHidden": true,
+		"FileDeleteVisible": false
 	},
 	{
 		"Status": "02",
 		"HasApprove": false,
 		"HasChange": false,
-		"HasReplace": true
+		"HasReplace": true,
+		"HideFile": true,
+		"UploadHidden": true,
+		"FileDeleteVisible": true
 	}
 ]
