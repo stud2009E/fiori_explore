@@ -27,6 +27,10 @@
 						path: 'props>fileName',
 						formatter: 'TU.simplePath'
 					}"
+					mimeType="{
+						path: 'props>itemMimeType',
+						formatter: 'TU.simplePath'
+					}"
 					visibleDelete="false"
 					visibleEdit="false">
 					

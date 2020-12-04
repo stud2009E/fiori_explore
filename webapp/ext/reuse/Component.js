@@ -44,6 +44,38 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: ""
                 },
+                extensionAPI: {
+                    type: "sap.suite.ui.generic.template.ObjectPage.extensionAPI.ExtensionAPI",
+                    group: "specific",
+                    defaultValue: null
+                },
+                /*
+                    UploadCollection settings
+                */
+                //string[]:Example mimeType ["image/png", "image/jpeg"]
+                mimeType: {
+                    type: "array",
+                    group: "specific",  
+                    defaultValue: "MimeType"
+                },
+                hidden: {
+                    type: "boolean",
+                    group: "specific",
+                    defaultValue: true
+                },
+                uploadButtonInvisible: {
+                    type: "boolean",
+                    group: "specific",
+                    defaultValue: true
+                },
+                visibleDelete: {
+                    type: "boolean",
+                    group: "specific",
+                    defaultValue: false
+                },
+                /*
+                    UploadCollectionItem settings
+                */
                 documentId: {
                     type: "string",
                     group: "specific",
@@ -54,37 +86,10 @@ sap.ui.define([
                     group: "specific",
                     defaultValue: "FileName"
                 },
-                //string[]:Example mimeType ["image/png", "image/jpeg"]
-                mimeType: {
-                    type: "array",
-                    group: "specific",  
-                    defaultValue: "MimeType"
-                },
-                //if no uploadEnabledPath, then use value uploadEnabled
-                uploadEnabled: {
-                    type: "boolean",
-                    group: "specific",
-                    defaultValue: false
-                },
-                visibleDelete: {
-                    type: "boolean",
-                    group: "specific",
-                    defaultValue: false
-                },
-                uploadButtonInvisible: {
-                    type: "boolean",
-                    group: "specific",
-                    defaultValue: true
-                },
-                extensionAPI: {
-                    type: "sap.suite.ui.generic.template.ObjectPage.extensionAPI.ExtensionAPI",
+                itemMimeType: {
+                    type: "string",
                     group: "specific",
                     defaultValue: null
-                },
-                hidden: {
-                    type: "boolean",
-                    group: "specific",
-                    defaultValue: true
                 },
                 //Example: [{path: "prop1"}, {path: "prop2"}] 
                 attributes: {
@@ -197,19 +202,6 @@ sap.ui.define([
 
             this._fireChangeEvent(bVisible, bOldValue, "visibleDelete"); 
         },
-
-        /**
-         * enable file upload
-         * @param {boolean} bEnabled 
-         * @param {boolean} bSuppressInvalidate 
-         */
-        setUploadEnabled: function(bEnabled, bSuppressInvalidate){
-            var bOldValue = this.getProperty("uploadEnabled");
-            
-            this.setProperty("uploadEnabled", bEnabled, bSuppressInvalidate);
-            this._fireChangeEvent(bEnabled, bOldValue, "uploadEnabled"); 
-        },
-
 
         /**
          * fire event if new value is not equal to old

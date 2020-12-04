@@ -7,7 +7,7 @@ sap.ui.define([], function(){
      * @returns {string} xml binding
      */
     function simplePath(propertyName){
-        return "{"+ propertyName +"}";
+        return propertyName ? "{"+ propertyName +"}" : "";
     }
 
 
@@ -17,7 +17,7 @@ sap.ui.define([], function(){
      * @returns {string} xml binding 
      */
     function simplePathLabel(propertyName){
-        return "{"+ propertyName +"/#@sap:label}";
+        return propertyName ? "{"+ propertyName +"/#@sap:label}" : "";
     }
 
     return {

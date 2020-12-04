@@ -2,50 +2,57 @@
 	{
 		"RowId": "01",
 		"FileId": "001",
-		"FileName": "File 1",
+		"FileName": "File_1.pdf",
 		"UserName": "Admin",
-		"FileSize": "100Kb"
+		"FileSize": "100Kb",
+		"MimeType": "application/pdf"
 	},
 	{
 		"RowId": "01",
 		"FileId": "002",
-		"FileName": "File 2",
+		"FileName": "File_2.ppt",
 		"UserName": "User",
-		"FileSize": "1M"
+		"FileSize": "1M",
+		"MimeType": "application/vnd.ms-powerpoint"
 	},
 	{
 		"RowId": "01",
 		"FileId": "003",
-		"FileName": "File 3",
+		"FileName": "File_3.png",
 		"UserName": "Vendor",
-		"FileSize": "100Kb"
+		"FileSize": "100Kb",
+		"MimeType": "image/png"
 	},
 	{
 		"RowId": "01",
 		"FileId": "004",
-		"FileName": "File 4",
+		"FileName": "File_4.xls",
 		"UserName": "Guest",
-		"FileSize": "100Kb"
+		"FileSize": "100Kb",
+		"MimeType": "application/vnd.ms-excel"
 	},
 	{
 		"RowId": "02",
 		"FileId": "005",
-		"FileName": "File SuperUser",
+		"FileName": "File_SuperUser.txt",
 		"UserName": "SuperUser",
-		"FileSize": "1M"
+		"FileSize": "1M",
+		"MimeType": "text/plain"
 	},
 	{
 		"RowId": "02",
 		"FileId": "006",
-		"FileName": "File Vendor",
+		"FileName": "File_Vendor.zip",
 		"UserName": "Vendor",
-		"FileSize": "100Kb"
+		"FileSize": "100Kb",
+		"MimeType": "application/zip"
 	},
 	{
 		"RowId": "02",
 		"FileId": "007",
-		"FileName": "File Basis",
+		"FileName": "File_Basis.doc",
 		"UserName": "Basis",
-		"FileSize": "100Kb"
+		"FileSize": "100Kb",
+		"MimeType": "application/msword"
 	}
 ]

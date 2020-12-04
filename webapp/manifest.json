@@ -200,12 +200,12 @@
 								"componentUsage": "documents",
 								"settings":{
 									"navProperty": "to_Files",
-									"documentId": "FileId",
-									"fileName": "FileName",
 									"hidden": "{to_TechAttribute/HideFile}",
-									"uploadEnabled": true,
 									"visibleDelete": "{to_TechAttribute/FileDeleteVisible}",
 									"uploadButtonInvisible": "{to_TechAttribute/UploadHidden}",
+									"documentId": "FileId",
+									"fileName": "FileName",
+									"itemMimeType": "MimeType",
 									"attributes": [
 										{"prop": "UserName"},
 										{"prop": "FileSize"}

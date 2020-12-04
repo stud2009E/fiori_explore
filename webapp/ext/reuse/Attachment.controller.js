@@ -98,11 +98,8 @@ sap.ui.define([
 		updateUploader: function(){
 			var oComponent = this.getOwnerComponent();
 			var oUploadCollection = this.byId("attachments");
-			
-			var bEnabled = oComponent.getUploadEnabled();
 			var bInvisible = oComponent.getUploadButtonInvisible();
 			
-			oUploadCollection.setUploadEnabled(bEnabled);
 			oUploadCollection.setUploadButtonInvisible(bInvisible);
 
 			this.updateUploadCollectionItems();

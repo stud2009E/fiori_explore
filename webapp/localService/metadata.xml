@@ -49,6 +49,7 @@
             <Property Name="FileName" Type="Edm.String" MaxLength="30" Nullable="false" sap:label="File name"/>
             <Property Name="UserName" Type="Edm.String" MaxLength="20" Nullable="false" sap:label="User name"/>
             <Property Name="FileSize" Type="Edm.String" MaxLength="10" Nullable="false" sap:label="File size"/>
+            <Property Name="MimeType" Type="Edm.String" MaxLength="40" Nullable="false" sap:label="MimeType"/>
          </EntityType>
 
          <ComplexType Name="ResultType">
