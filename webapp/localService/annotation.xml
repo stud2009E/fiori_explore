@@ -59,6 +59,11 @@
 						<Record Type="UI.DataField">
 							<PropertyValue Property="Value" Path="Time"/>
 						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="{@i18n>GroupAction}"/>
+							<PropertyValue Property="Action" String="Metadata.CUSTOM_DATA_SRVEntities/GroupAction"/>
+							<PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+						</Record>
 					</Collection>
 				</Annotation>
 				<Annotation Term="UI.Facets">

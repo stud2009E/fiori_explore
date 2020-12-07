@@ -94,6 +94,14 @@
                <Parameter Name="RowId" Type="Edm.String" Mode="In" MaxLength="10"/>
             </FunctionImport>
 
+            <FunctionImport Name="GroupAction"
+               ReturnType="CUSTOM_DATA_SRV.ResultType"
+               m:HttpMethod="POST"
+               sap:action-for="CUSTOM_DATA_SRV.HeaderType"
+               sap:applicable-path="Boolean">
+               <Parameter Name="RowId" Type="Edm.String" Mode="In" MaxLength="10"/>
+            </FunctionImport>
+
             <AssociationSet Name="set_assoc_File" Association="CUSTOM_DATA_SRV.assoc_Files" 
                sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                <End EntitySet="HeaderSet" Role="FromRole_File"/>
